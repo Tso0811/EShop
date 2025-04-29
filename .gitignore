@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+
+# Media & static (如果是上傳的檔案)
+media/
+staticfiles/
+
+# VSCode 設定
+.vscode/
+
+# 環境變數、密鑰
+.env
+
+# 虛擬環境
+venv/
+env/
+ENV/
