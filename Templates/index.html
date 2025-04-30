@@ -1,16 +1,18 @@
-<!-- 首頁顯示熱門商品 -->
 {% extends 'base.html' %}
-{% block title %}首頁{% endblock %}
+{% block title %}{% if is_product_list %}商品列表{% else %}首頁{% endif %}{% endblock %}
 {% block content %}
-    <h2 class="text-2xl font-bold mb-4">熱門商品</h2>
+    <h2 class="text-2xl font-bold mb-4">{% if is_product_list %}所有商品{% else %}熱門商品{% endif %}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {% for product in products %}
             <div class="bg-white p-4 rounded-lg shadow-md transition-hover">
-                <img src="{{ product.image.url }}" alt="{{ product.name }}"class="w-full h-48 object-contain object-center bg-white rounded-md mb-2" style="max-height: 200px;" loading="lazy">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-contain object-center bg-white rounded-md mb-2" style="max-height: 200px;" loading="lazy">
                 <h3 class="text-lg font-semibold">{{ product.name }}</h3>
                 <p class="text-gray-600">NT${{ product.price }}</p>
-                <a href="/products/{{ product.id }}/" class="bg-blue-600 text-white px-4 py-2 rounded mt-2 inline-block">查看詳情</a>
+                <a href="{% url 'products_detail_view' product.id %}" class="bg-blue-600 text-white px-4 py-2 rounded mt-2 inline-block">查看詳情</a>
             </div>
         {% endfor %}
     </div>
+    {% if not products %}
+        <p class="text-gray-600 mt-4">沒有商品</p>
+    {% endif %}
 {% endblock %}
