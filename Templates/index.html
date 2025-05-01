@@ -8,7 +8,7 @@
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-48 object-contain object-center bg-white rounded-md mb-2" style="max-height: 200px;" loading="lazy">
                 <h3 class="text-lg font-semibold">{{ product.name }}</h3>
                 <p class="text-gray-600">NT${{ product.price }}</p>
-                <a href="{% url 'products_detail_view' product.id %}" class="bg-blue-600 text-white px-4 py-2 rounded mt-2 inline-block">查看詳情</a>
+                <a href="{% url 'products:products_detail_view' product.id %}" class="bg-blue-600 text-white px-4 py-2 rounded mt-2 inline-block">查看詳情</a>
             </div>
         {% endfor %}
     </div>

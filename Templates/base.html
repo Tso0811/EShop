@@ -15,7 +15,7 @@
 <body class="bg-gray-100">
     <nav class="bg-blue-600 text-white p-4 sticky top-0">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="/products/" class="text-2xl font-bold">電商</a>
+            <a href="{% url 'products:products_view' %}" class="text-2xl font-bold">電商</a>
             <div class="flex items-center space-x-4">
                 <form action="/products/" method="GET" class="flex">
                     <input type="text" name="q" placeholder="搜尋..." class="p-2 rounded-l-md">
