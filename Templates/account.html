@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}用戶中心{% endblock %}
 {% block content %}
-    <h2 class="text-2xl font-bold mb-4">用戶中心</h2>
-    <div class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
-        <p><strong>用戶名:</strong> {{ user.username }}</p>
-        <p><strong>電子郵件:</strong> {{ user.email }}</p>
-        <a href="{% url 'accounts:logout_view' %}" class="bg-red-600 text-white px-4 py-2 rounded mt-4 inline-block">登出</a>
+    <h2 class="text-3xl font-bold mb-6 text-white fade-in">用戶中心</h2>
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto fade-in">
+        <p class="text-gray-100"><strong>用戶名:</strong> {{ user.username }}</p>
+        <p class="text-gray-100"><strong>電子郵件:</strong> {{ user.email }}</p>
+        <a href="{% url 'accounts:logout_view' %}" class="btn-danger text-white px-4 py-2 rounded mt-4 inline-block">登出</a>
     </div>
-    <h3 class="text-xl font-semibold mt-8">訂單歷史</h3>
-    <p class="text-gray-600">暫無訂單</p>
+    <h3 class="text-xl font-semibold mt-8 text-white">訂單歷史</h3>
+    <p class="text-gray-400">暫無訂單</p>
 {% endblock %}
