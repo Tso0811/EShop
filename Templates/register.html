@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}註冊{% endblock %}
+{% block content %}
+    <h2 class="text-2xl font-bold mb-4">註冊</h2>
+    <form method="POST" action="{% url 'accounts:register_view' %}" class="bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
+        {% csrf_token %}
+        <ul class="text-red-600 mb-4">
+            {% if errorpass %}
+            <p class="text-red-600 mb-2">{{ errorpass }}</p>
+        {% endif %}
+        {% if errorname %}
+            <p class="text-red-600 mb-2">{{ errorname }}</p>
+        {% endif %}
+        {% if errormail %}
+            <p class="text-red-600 mb-2">{{ errormail }}</p>
+        {% endif %}
+                
+        </ul>
+        
+        <div class="mb-4">
+            <label for="username" class="block mb-1">用戶名:</label>
+            <input type="text" id="username" name="username" required class="p-2 border rounded w-full">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block mb-1">電子郵件:</label>
+            <input type="email" id="email" name="email" required class="p-2 border rounded w-full">
+        </div>
+        <div class="mb-4">
+            <label for="password1" class="block mb-1">密碼:</label>
+            <input type="password" id="password1" name="password1" required class="p-2 border rounded w-full">
+        </div>
+        <div class="mb-4">
+            <label for="password2" class="block mb-1">確認密碼:</label>
+            <input type="password" id="password2" name="password2" required class="p-2 border rounded w-full">
+        </div>
+        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded w-full">註冊</button>
+    </form>
+    <p class="mt-4 text-center">
+        已有帳號？<a href="{% url 'accounts:login_view' %}" class="text-blue-600 hover:underline">登入</a>
+    </p>
+{% endblock %}
