@@ -1,3 +1,4 @@
+#produucts views.py
 from django.shortcuts import render
 from .models import Product
 from django.shortcuts import get_object_or_404
@@ -14,5 +15,5 @@ def products_view(request):
 
 def products_detail_view(request , id): #顯示商品細節
     products = get_object_or_404(Product , pk = id)
-    return render (request , 'products_detail.html' , {'products':products})
+    return render (request , 'products_detail.html' , {'product':products})
 
