@@ -2,11 +2,36 @@
 {% block title %}用戶中心{% endblock %}
 {% block content %}
     <h2 class="text-3xl font-bold mb-6 text-white fade-in">用戶中心</h2>
-    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto fade-in">
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto fade-in mb-8">
         <p class="text-gray-100"><strong>用戶名:</strong> {{ user.username }}</p>
         <p class="text-gray-100"><strong>電子郵件:</strong> {{ user.email }}</p>
         <a href="{% url 'accounts:logout_view' %}" class="btn-danger text-white px-4 py-2 rounded mt-4 inline-block">登出</a>
     </div>
-    <h3 class="text-xl font-semibold mt-8 text-white">訂單歷史</h3>
-    <p class="text-gray-400">暫無訂單</p>
+    <h3 class="text-xl font-semibold mb-4 text-white">訂單歷史</h3>
+    {% if orders %}
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg fade-in">
+            <table class="w-full text-gray-100">
+                <thead>
+                    <tr class="border-b border-gray-600">
+                        <th class="text-left py-3">訂單編號</th>
+                        <th class="text-left py-3">日期</th>
+                        <th class="text-left py-3">總計</th>
+                        <th class="text-left py-3">狀態</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr class="border-b border-gray-600">
+                            <td class="py-3"><a href="{% url 'orders:detail' order.id %}" class="text-blue-400 hover:underline">{{ order.id }}</a></td>
+                            <td class="py-3">{{ order.created_at|date:"Y-m-d" }}</td>
+                            <td class="py-3">NT${{ order.total_price }}</td>
+                            <td class="py-3">{{ order.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-gray-400">暫無訂單</p>
+    {% endif %}
 {% endblock %}

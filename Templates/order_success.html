@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}訂單成功{% endblock %}
+{% block content %}
+    <h2 class="text-3xl font-bold mb-6 text-white fade-in">訂單已確認</h2>
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-md mx-auto fade-in">
+        <p class="text-gray-100">感謝您的購買！</p>
+        <p class="text-gray-100">訂單編號: {{ order.id }}</p>
+        <p class="text-gray-100">總計: NT${{ order.total_price }}</p>
+        <a href="{% url 'accounts:account_view' %}" class="btn-primary text-white px-4 py-2 rounded mt-4 inline-block">查看訂單歷史</a>
+        <a href="{% url 'products:products_view' %}" class="btn-primary text-white px-4 py-2 rounded mt-4 inline-block">繼續購物</a>
+    </div>
+{% endblock %}
