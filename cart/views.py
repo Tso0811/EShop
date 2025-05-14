@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from products.models import Product
 from .models import Cart, CartItem
-from django.urls import reverse
 
 @login_required
 def add_to_cart(request):
@@ -39,10 +38,18 @@ def add_to_cart(request):
     
 @login_required
 def cart_view(request):
-    cart = Cart.objects.get(user=request.user)  
-    items = CartItem.objects.filter(cart=cart) 
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    cart_items = CartItem.objects.filter(cart=cart)
 
-    return render (request , 'cart.html' , {'cart_items':items})
+    total_price = sum(item.products.price * item.quantity for item in cart_items)
+
+    for item in cart_items:
+        item.subtotal = item.products.price * item.quantity #使用動態語言的特性新增屬性
+
+    return render(request, 'cart.html', {
+        'cart_items': cart_items,
+        'total_price': total_price
+    })
 
 @login_required
 def update_cart(request):
