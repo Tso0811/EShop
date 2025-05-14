@@ -17,8 +17,8 @@
                 <tbody>
                     {% for item in cart_items %}
                         <tr class="border-b border-gray-600">
-                            <td class="py-3">{{ item.product.name }}</td>
-                            <td class="py-3">NT${{ item.product.price }}</td>
+                            <td class="py-3">{{ item.products.name }}</td>
+                            <td class="py-3">NT${{ item.products.price }}</td>
                             <td class="py-3">{{ item.quantity }}</td>
                             <td class="py-3">NT${{ item.subtotal }}</td>
                         </tr>
@@ -33,7 +33,7 @@
 
         {% if cart_items %}
             <h3 class="text-xl font-semibold mt-8 mb-4 text-white">運送資訊</h3>
-            <form method="POST" action="{% url 'orders:create' %}" class="mb-6">
+            <form method="POST" action="" class="mb-6">
                 {% csrf_token %}
                 <div class="mb-4">
                     <label for="address" class="block mb-1 text-gray-100">地址:</label>
@@ -65,11 +65,11 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    window.location.href = "{% url 'orders:success' 0 %}".replace('0', details.id);
+                    window.location.href = "".replace('0', details.id);
                 });
             },
             onError: function(err) {
-                window.location.href = "{% url 'orders:failure' %}";
+                window.location.href = "";
             }
         }).render('#paypal-button-container');
     </script>

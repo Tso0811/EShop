@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('products.url')),
     path('accounts/' , include( 'accounts.url' , namespace='accounts' )),
-    path('cart' , include('cart.url' , namespace='cart'))
+    path('cart/' , include('cart.url' , namespace='cart')),
+    path('orders/',include('orders.url' , namespace='orders'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

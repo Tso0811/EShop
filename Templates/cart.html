@@ -44,7 +44,7 @@
                 <p class="text-xl font-semibold text-white">總計: NT${{ total_price }}</p>
                 <div>
                     <a href="{% url 'cart:clear' %}" class="btn-danger text-white px-4 py-2 rounded mr-2">清空購物車</a>
-                    <a href="/checkout/" class="btn-primary text-white px-4 py-2 rounded">結帳</a>
+                    <a href="{% url 'orders:checkout_view' %}" class="btn-primary text-white px-4 py-2 rounded">結帳</a>
                 </div>
             </div>
         </div>
